@@ -62,42 +62,4 @@
 
 </body>
 </html>
-<h2>🔥 Ofertas do Dia</h2>
-<div id="ofertas" class="produtos"></div>
 
-<h2>📱 Eletrônicos</h2>
-<div id="eletronicos" class="produtos"></div>
-
-<h2>🏠 Casa & Cozinha</h2>
-<div id="casa" class="produtos"></div>
-
-<h2>🔧 Ferramentas</h2>
-<div id="ferramentas" class="produtos"></div>
-<script>
-function carregarProdutos(busca, containerId) {
-  fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${busca}&sort=price_asc&limit=8`)
-    .then(res => res.json())
-    .then(data => {
-      const container = document.getElementById(containerId);
-      container.innerHTML = "";
-      data.results.forEach(produto => {
-        container.innerHTML += `
-          <div class="card">
-            <img src="${produto.thumbnail}" alt="${produto.title}">
-            <h3>${produto.title}</h3>
-            <p>R$ ${produto.price.toFixed(2)}</p>
-            <a href="SEU_LINK_DE_AFILIADO${produto.id}" target="_blank">
-              Comprar no Mercado Livre
-            </a>
-          </div>
-        `;
-      });
-    });
-}
-
-// chamadas automáticas
-carregarProdutos("ofertas", "ofertas");
-carregarProdutos("eletronicos", "eletronicos");
-carregarProdutos("casa cozinha", "casa");
-carregarProdutos("ferramentas", "ferramentas");
-</script>
